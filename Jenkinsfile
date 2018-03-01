@@ -20,7 +20,7 @@ checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name
         stage ('Build&test') {
             steps {
                 echo "Building and testing..."
-                sh '/usr/local/maven clean install'
+                sh '/usr/local/maven/mvn clean install'
             }
         }
         stage ('deploy') {
