@@ -1,9 +1,13 @@
 pipeline {
     agent any
-     tools {
-        maven 'Maven 3.5.2'
-    }
+    
     stages {
+         steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            } 
         stage ('checkout') {
             steps {
                 echo "checking out from github"
@@ -13,7 +17,7 @@ checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name
         stage ('Build&test') {
             steps {
                 echo "Building and testing..."
-                sh 'mvn clean install'
+                sh '/usr/local/maven clean install'
             }
         }
         stage ('deploy') {
