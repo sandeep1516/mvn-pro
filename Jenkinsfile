@@ -2,12 +2,15 @@ pipeline {
     agent any
     
     stages {
-         steps {
+         stage ('Initialize') {
+            steps {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 '''
-            } 
+            }
+        }
+         
         stage ('checkout') {
             steps {
                 echo "checking out from github"
